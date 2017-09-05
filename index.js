@@ -37,8 +37,8 @@ readFile(program.conf, 'utf8', (err, confStr) => {
   const port = program.port || 8080;
   const conf = JSON.parse(confStr);
   const app = connect();
-  conf.forEach(({ context, ...c }) => {
-    app.use(c, proxy(c));
+  conf.forEach(({ context, ...entry }) => {
+    context.forEach(c => app.use(c, proxy(entry)));
   });
   http.createServer(app).listen(port, () => {
     console.log('Proxy server starder on port', port);
