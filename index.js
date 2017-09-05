@@ -11,7 +11,7 @@ const packageVersion = require('./package.json').version;
 program
   .version(packageVersion)
   .option('-c, --conf <path>', 'Config file defaults to ./proxies-conf.json')
-  .option('--p, --port <path>', 'Http proxy server port. Default to 8080')
+  .option('-p, --port <path>', 'Http proxy server port. Default to 8080')
   .option('-h, --help', 'Help');
 
 program.on('--help', () => {
