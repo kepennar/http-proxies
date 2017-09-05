@@ -9,6 +9,9 @@
   "bin": {
     "http-proxies": "index.js"
   },
+  "repository": {
+    "url": "https://github.com/kepennar/http-proxies.git"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
