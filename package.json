@@ -1,0 +1,19 @@
+{
+  "name": "http-proxies",
+  "version": "0.0.3",
+  "description": "Simple http proxy cli with a json config",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "http-proxies": "index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "connect": "^3.6.3",
+    "http-proxy-middleware": "^0.17.4"
+  }
+}
