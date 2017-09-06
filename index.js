@@ -5,14 +5,15 @@ const http = require('http');
 const connect = require('connect');
 const proxy = require('http-proxy-middleware');
 const program = require('commander');
+const morgan = require('morgan');
 
 const packageVersion = require('./package.json').version;
 
 program
   .version(packageVersion)
   .option('-c, --conf <path>', 'Config file defaults to ./proxies-conf.json')
-  .option('-p, --port <path>', 'Http proxy server port. Default to 8080')
-  .option('-h, --help', 'Help');
+  .option('-p, --port [path]', 'Http proxy server port. Default to 8080')
+  .option('-l, --logs', 'With access log');
 
 program.on('--help', () => {
   console.log('  Examples:');
@@ -21,13 +22,13 @@ program.on('--help', () => {
   console.log('    $ http-proxies -c your-proxies-conf.json');
   console.log('');
 });
-if (!process.argv.slice(2).length) {
-  program.outputHelp();
-}
 
 program.parse(process.argv);
+if (!program.conf) {
+  program.outputHelp();
+  return;	
+}
 
-console.log('With conf', program.conf);
 readFile(program.conf, 'utf8', (err, confStr) => {
   if (err) {
     console.error('Invalid conf file', program.conf);
@@ -37,8 +38,12 @@ readFile(program.conf, 'utf8', (err, confStr) => {
   const port = program.port || 8080;
   const conf = JSON.parse(confStr);
   const app = connect();
-  conf.forEach(({ context, ...entry }) => {
-    context.forEach(c => app.use(c, proxy(entry)));
+
+  if (program.logs) {
+    app.use(morgan('tiny'));
+  }
+  conf.forEach(({ context, ...rules }) => {
+    context.forEach(c => app.use(c, proxy(rules)));
   });
   http.createServer(app).listen(port, () => {
     console.log('Proxy server starder on port', port);
