@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 const readFile = require('fs').readFile;
+const url = require('url');
 const http = require('http');
 const connect = require('connect');
-const proxy = require('http-proxy-middleware');
+const Proxy = require('http-proxy-middleware');
 const program = require('commander');
 const morgan = require('morgan');
 
@@ -26,7 +27,7 @@ program.on('--help', () => {
 program.parse(process.argv);
 if (!program.conf) {
   program.outputHelp();
-  return;	
+  return;
 }
 
 readFile(program.conf, 'utf8', (err, confStr) => {
@@ -42,10 +43,31 @@ readFile(program.conf, 'utf8', (err, confStr) => {
   if (program.logs) {
     app.use(morgan('tiny'));
   }
-  conf.forEach(({ context, ...rules }) => {
-    context.forEach(c => app.use(c, proxy(rules)));
-  });
+
+  conf.forEach(({ context, ...rules }) =>
+    context.forEach(c => {
+      let conf = rules;
+      if (rules.rewriteHeaders) {
+        const { rewriteHeaders, ...keep } = rules;
+        const onProxyReq = (proxyReq, req, res) => {
+          writeHeaders(proxyReq, rewriteHeaders, program.logs);
+        };
+        conf = { ...keep, onProxyReq };
+      }
+      app.use(c, Proxy(conf));
+    })
+  );
+
   http.createServer(app).listen(port, () => {
     console.log('Proxy server starder on port', port);
   });
 });
+
+function writeHeaders(proxyReq, rewriteHeadersConf, logs = false) {
+  Object.entries(rewriteHeadersConf).forEach(([name, value]) => {
+    if (logs) {
+      console.log('[DEBUG] write header', name, value);
+    }
+    proxyReq.setHeader(name, value);
+  });
+}

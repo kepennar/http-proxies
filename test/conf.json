@@ -1,18 +1,28 @@
 [
   {
-    "context": ["/v1/auth"],
-    "target": "http://localhost:1234",
+    "context": ["/test"],
+    "target": "http://localhost:8081",
     "secure": false,
+    "autoRewrite": true,
     "pathRewrite": {
-      "^/v1/auth": "/auth"
+      "^/test": ""
+    },
+    "rewriteHeaders": {
+      "Host": "http://example.com"
     }
   },
   {
     "context": ["/v1/marketplace"],
-    "target": "http://localhost:8888",
+    "target": "http://localhost:1234",
     "secure": false,
     "pathRewrite": {
       "^/v1/marketplace": "/marketplace"
     }
+  },
+  {
+    "context": ["/user"],
+    "target": "http://localhost:4001",
+    "secure": false,
+    "enforceAutoRewrite": true
   }
 ]
