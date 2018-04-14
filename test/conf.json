@@ -1,28 +1,30 @@
 [
   {
-    "context": ["/test"],
-    "target": "http://localhost:8081",
+    "context": ["/google"],
+    "target": "https://www.google.com",
     "secure": false,
     "autoRewrite": true,
     "pathRewrite": {
-      "^/test": ""
+      "^/google": "/"
     },
     "rewriteHeaders": {
-      "Host": "http://example.com"
-    }
+      "Host": "example.com"
+    },
+    "cookieDomainRewrite": { "*": "" }
   },
   {
-    "context": ["/v1/marketplace"],
+    "context": ["/v1/app1"],
     "target": "http://localhost:1234",
     "secure": false,
     "pathRewrite": {
-      "^/v1/marketplace": "/marketplace"
+      "^/v1/app1": "/app1"
     }
   },
   {
-    "context": ["/user"],
+    "context": ["/app2"],
     "target": "http://localhost:4001",
     "secure": false,
+    "changeOrigin": true,
     "enforceAutoRewrite": true
   }
 ]

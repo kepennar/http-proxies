@@ -3,11 +3,13 @@
 ## Simple configurable http proxy server
 
 ### Example
+
 ```bash
-$ npx http-proxies -c conf.json
+npx http-proxies -c conf.json
 ```
 
 conf.json
+
 ```json
 [
   {
@@ -27,14 +29,12 @@ conf.json
     }
   }
 ]
-
 ```
-
 
 ### Help
+
 ```
   Usage: index [options]
-
 
   Options:
 
@@ -42,11 +42,11 @@ conf.json
     -c, --conf <path>  Config file defaults to ./proxies-conf.json
     -p, --port [path]  Http proxy server port. Default to 8080
     -l, --logs         With access log
+    -s, --secure       With SSL (Auto generated self signed certificate)
     -h, --help         output usage information
   Examples:
 
     $ http-proxies --help
     $ http-proxies -c your-proxies-conf.json
-
-
+    $ http-proxies -c your-proxies-conf.json -ls
 ```
