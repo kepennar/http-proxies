@@ -4,10 +4,7 @@ const { readFile } = require('fs');
 const program = require('commander');
 const morgan = require('morgan');
 
-const proxy = require('./lib/proxy');
-const generateCert = require('./lib/sslCert');
-const startServer = require('./lib/server');
-const log = require('./lib/logs');
+const { generateCert, log, proxy, startServer } = require('./lib');
 
 const packageVersion = require('./package.json').version;
 
@@ -16,7 +13,8 @@ program
   .option('-c, --conf <path>', 'Config file defaults to ./proxies-conf.json')
   .option('-p, --port [path]', 'Http proxy server port. Default to 8080')
   .option('-l, --logs', 'With access log')
-  .option('-s, --secure', 'With SSL (Auto generated self signed certificate)');
+  .option('-s, --secure', 'With SSL (Auto generated self signed certificate)')
+  .option('-m, --managment', 'Enable managment');
 
 program.on('--help', () => {
   console.log('  Examples:');
@@ -48,7 +46,11 @@ readFile(program.conf, 'utf8', async (err, confStr) => {
   if (program.logs) {
     middlewares.push(morgan('tiny'));
   }
-  const app = proxy(conf, middlewares, logger);
+  const { app, wrapper } = proxy(conf, middlewares, logger);
+
+  if (program.managment) {
+    require('./lib/management')(app, conf, wrapper);
+  }
 
   if (program.secure) {
     const cert = await generateCert();
