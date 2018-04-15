@@ -13,22 +13,35 @@ conf.json
 ```json
 [
   {
-    "context": ["/v1/auth"],
+    "context": ["/google"],
+    "target": "https://www.google.com",
+    "secure": false,
+    "autoRewrite": true,
+    "pathRewrite": {
+      "^/google": "/"
+    },
+    "rewriteHeaders": {
+      "Host": "example.com"
+    },
+    "cookieDomainRewrite": { "*": "" }
+  },
+  {
+    "context": ["/v1/app1"],
     "target": "http://localhost:1234",
     "secure": false,
     "pathRewrite": {
-      "^/v1/auth": "/auth"
+      "^/v1/app1": "/app1"
     }
   },
   {
-    "context": ["/v1/marketplace"],
-    "target": "http://localhost:8888",
+    "context": ["/app2"],
+    "target": "http://localhost:4001",
     "secure": false,
-    "pathRewrite": {
-      "^/v1/marketplace": "/marketplace"
-    }
+    "changeOrigin": true,
+    "enforceAutoRewrite": true
   }
 ]
+
 ```
 
 ### Help
