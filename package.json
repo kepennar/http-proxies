@@ -4,7 +4,8 @@
   "description": "Simple http proxy cli with a json config",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon index.js -p 8888 -l -c test/conf.json"
+    "start:dev": "nodemon index.js -p 8888 -l -c test/conf.json",
+    "test": "jest"
   },
   "bin": {
     "http-proxies": "index.js"
@@ -15,14 +16,36 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "chalk": "^2.3.2",
+    "clone": "^1.0.4",
     "commander": "^2.15.1",
     "connect": "^3.6.6",
+    "connect-route": "^0.1.5",
     "http-proxy-middleware": "^0.18.0",
+    "joi": "^13.1.2",
     "morgan": "^1.9.0",
-    "pem": "^1.12.5"
+    "pem": "^1.12.5",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
-    "nodemon": "^1.17.2"
+    "jest": "^22.4.3",
+    "nodemon": "^1.17.3"
+  },
+  "jest": {
+    "projects": [
+      "src"
+    ],
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "collectCoverage": true
   }
 }

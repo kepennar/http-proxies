@@ -4,10 +4,7 @@ const { readFile } = require('fs');
 const program = require('commander');
 const morgan = require('morgan');
 
-const proxy = require('./lib/proxy');
-const generateCert = require('./lib/sslCert');
-const startServer = require('./lib/server');
-const log = require('./lib/logs');
+const { store, generateCert, log, proxy, startServer } = require('./lib');
 
 const packageVersion = require('./package.json').version;
 
@@ -16,7 +13,8 @@ program
   .option('-c, --conf <path>', 'Config file defaults to ./proxies-conf.json')
   .option('-p, --port [path]', 'Http proxy server port. Default to 8080')
   .option('-l, --logs', 'With access log')
-  .option('-s, --secure', 'With SSL (Auto generated self signed certificate)');
+  .option('-s, --secure', 'With SSL (Auto generated self signed certificate)')
+  .option('-m, --managment', 'Enable managment');
 
 program.on('--help', () => {
   console.log('  Examples:');
@@ -35,20 +33,24 @@ if (!program.conf) {
 
 const logger = log(program.logs);
 
-readFile(program.conf, 'utf8', async (err, confStr) => {
-  if (err) {
+(async () => {
+  try {
+    await store.initFromFile('proxies', program.conf);
+  } catch (e) {
     logger.error('Invalid conf file', program.conf);
     return;
   }
-
   const port = program.port || 8080;
-  const conf = JSON.parse(confStr);
 
   const middlewares = [];
   if (program.logs) {
     middlewares.push(morgan('tiny'));
   }
-  const app = proxy(conf, middlewares, logger);
+  const { app, wrapper } = proxy(middlewares, logger);
+
+  if (program.managment) {
+    require('./lib/management')(app, wrapper);
+  }
 
   if (program.secure) {
     const cert = await generateCert();
@@ -56,4 +58,4 @@ readFile(program.conf, 'utf8', async (err, confStr) => {
   } else {
     startServer(app, port, logger);
   }
-});
+})();
