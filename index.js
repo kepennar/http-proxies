@@ -4,7 +4,7 @@ const { readFile } = require('fs');
 const program = require('commander');
 const morgan = require('morgan');
 
-const { generateCert, log, proxy, startServer } = require('./lib');
+const { store, generateCert, log, proxy, startServer } = require('./lib');
 
 const packageVersion = require('./package.json').version;
 
@@ -33,23 +33,23 @@ if (!program.conf) {
 
 const logger = log(program.logs);
 
-readFile(program.conf, 'utf8', async (err, confStr) => {
-  if (err) {
+(async () => {
+  try {
+    await store.init(program.conf, 'proxies');
+  } catch (e) {
     logger.error('Invalid conf file', program.conf);
     return;
   }
-
   const port = program.port || 8080;
-  const conf = JSON.parse(confStr);
 
   const middlewares = [];
   if (program.logs) {
     middlewares.push(morgan('tiny'));
   }
-  const { app, wrapper } = proxy(conf, middlewares, logger);
+  const { app, wrapper } = proxy(middlewares, logger);
 
   if (program.managment) {
-    require('./lib/management')(app, conf, wrapper);
+    require('./lib/management')(app, wrapper);
   }
 
   if (program.secure) {
@@ -58,4 +58,4 @@ readFile(program.conf, 'utf8', async (err, confStr) => {
   } else {
     startServer(app, port, logger);
   }
-});
+})();
