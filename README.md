@@ -49,6 +49,7 @@ conf.json
 ### Help
 
 ```
+  
   Usage: index [options]
 
   Options:
@@ -58,10 +59,11 @@ conf.json
     -p, --port [path]  Http proxy server port. Default to 8080
     -l, --logs         With access log
     -s, --secure       With SSL (Auto generated self signed certificate)
+    -m, --managment    Enable managment
     -h, --help         output usage information
   Examples:
 
     $ http-proxies --help
     $ http-proxies -c your-proxies-conf.json
-    $ http-proxies -c your-proxies-conf.json -ls
+    $ http-proxies -c your-proxies-conf.json -lsm
 ```

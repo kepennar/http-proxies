@@ -21,7 +21,7 @@ program.on('--help', () => {
   console.log('');
   console.log('    $ http-proxies --help');
   console.log('    $ http-proxies -c your-proxies-conf.json');
-  console.log('    $ http-proxies -c your-proxies-conf.json -ls');
+  console.log('    $ http-proxies -c your-proxies-conf.json -lsm');
   console.log('');
 });
 
