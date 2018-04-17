@@ -35,7 +35,7 @@ const logger = log(program.logs);
 
 (async () => {
   try {
-    await store.init(program.conf, 'proxies');
+    await store.initFromFile('proxies', program.conf);
   } catch (e) {
     logger.error('Invalid conf file', program.conf);
     return;
