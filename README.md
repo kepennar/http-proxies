@@ -48,8 +48,7 @@ conf.json
 
 ### Help
 
-```
-  
+```bash
   Usage: index [options]
 
   Options:
