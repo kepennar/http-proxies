@@ -1,0 +1,17 @@
+.toolbar {
+  background-color: var(--dark);
+  --mdc-theme-text-primary-on-background: var(--light);
+}
+.logo {
+  font-size: 1em;
+  min-height: 80px;
+  width: 400px;
+  margin-left: 0 !important;
+}
+
+:global {
+  .field-darkmode .mdc-switch {
+    margin-left: 8px;
+    margin-right: 16px;
+  }
+}

@@ -1,5 +1,7 @@
 # http-proxies
 
+![HTTP-pROXies logo](./doc/logo.png?raw=true "Logo")
+
 ## Simple configurable http proxy server
 
 [![Build Status](https://travis-ci.org/kepennar/http-proxies.svg?branch=master)](https://travis-ci.org/kepennar/http-proxies)

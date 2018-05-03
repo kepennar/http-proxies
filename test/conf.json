@@ -26,5 +26,13 @@
     "secure": false,
     "changeOrigin": true,
     "enforceAutoRewrite": true
+  },
+  {
+    "context": ["/management"],
+    "target": "http://localhost:8080",
+    "enforceAutoRewrite": true,
+    "pathRewrite": {
+      "^/management": "/"
+    }
   }
 ]
