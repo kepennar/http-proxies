@@ -16,7 +16,9 @@ const Transforms = ({ conf }) => (
       .filter(([key]) => !hideThis.includes(key))
       .map(([key, value]) => (
         <div>
-          <span>{key}</span> <span>{value}</span>
+          <span class={style.tranformKey}>{key}</span>
+          {' : '}
+          <span>{JSON.stringify(value)}</span>
         </div>
       ))}
   </div>
@@ -24,7 +26,7 @@ const Transforms = ({ conf }) => (
 
 export default ({ conf }) => (
   <div class={style.container}>
-    <Card className={style.card}>
+    <Card className={`${style.card} ${style.input}`}>
       <div class={style.cardHeader}>
         <h2 class=" mdc-typography--title">Sources</h2>
       </div>
@@ -33,7 +35,7 @@ export default ({ conf }) => (
       </div>
     </Card>
     <Transforms conf={conf} />
-    <Card className={style.card}>
+    <Card className={`${style.card} ${style.output}`}>
       <div class={style.cardHeader}>
         <h2 class=" mdc-typography--title">Target</h2>
       </div>

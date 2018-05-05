@@ -21,18 +21,82 @@
     }
   },
   {
+    "context": ["/v1/app2"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app3"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app4"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app5"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app1"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app1"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app1"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app1"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
+    "context": ["/v1/app1"],
+    "target": "http://localhost:1234",
+    "secure": false,
+    "pathRewrite": {
+      "^/v1/app1": "/app1"
+    }
+  },
+  {
     "context": ["/app2"],
     "target": "http://localhost:4001",
     "secure": false,
     "changeOrigin": true,
     "enforceAutoRewrite": true
-  },
-  {
-    "context": ["/management"],
-    "target": "http://localhost:8080",
-    "enforceAutoRewrite": true,
-    "pathRewrite": {
-      "^/management": "/"
-    }
   }
 ]

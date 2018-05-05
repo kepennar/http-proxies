@@ -1,6 +1,5 @@
 .home {
-  margin: auto;
-  max-width: 1280px;
-  min-height: 100%;
+  height: calc(100% - var(--toolbar-height));
   padding: 20px;
+  overflow-y: auto;
 }

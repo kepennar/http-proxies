@@ -4,6 +4,8 @@
   "description": "Simple http proxy cli with a json config",
   "main": "index.js",
   "scripts": {
+    "prepublish": "",
+    "build:front": "npm run --prefix front build",
     "start:dev": "nodemon index.js -p 8888 -l -c test/conf.json",
     "test": "jest"
   },
@@ -26,6 +28,7 @@
     "joi": "^13.1.2",
     "morgan": "^1.9.0",
     "pem": "^1.12.5",
+    "serve-static": "^1.13.2",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

@@ -1,0 +1,5 @@
+# ignore all front fles
+front
+
+# except builded management front app
+!front.build

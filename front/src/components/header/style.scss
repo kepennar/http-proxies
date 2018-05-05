@@ -1,6 +1,7 @@
 .toolbar {
   background-color: var(--dark);
   --mdc-theme-text-primary-on-background: var(--light);
+  height: var(--toolbar-height);
 }
 .logo {
   font-size: 1em;

@@ -23,6 +23,9 @@
   margin: 0 1em;
   align-self: center;
 }
+.tranformKey {
+  font-weight: bold;
+}
 .arrow {
   --arrow-size: 15px;
   --arrow-color: var(--txt-color);
@@ -34,4 +37,14 @@
   margin-left: 100%;
   transform: rotate(45deg) translateX(var(--translation));
   width: var(--arrow-size);
+}
+
+.input {
+  background: url(../../assets/input.svg) no-repeat center center #fff;
+  background-size: contain;
+}
+
+.output {
+  background: url(../../assets/output.svg) no-repeat center center #fff;
+  background-size: contain;
 }
