@@ -1,0 +1,7 @@
+# ignore all front fles
+front
+coverage
+doc
+
+# except builded management front app
+!front/build

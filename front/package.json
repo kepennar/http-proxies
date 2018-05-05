@@ -1,0 +1,38 @@
+{
+  "private": true,
+  "name": "http-proxies-management",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",
+    "build": "preact --service-worker false --no-prerender --template src/index.template build ",
+    "serve": "preact --service-worker --template src/index.template false build && preact serve",
+    "dev": "preact --template src/index.template watch",
+    "lint": "eslint src"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-synacor",
+    "rules": {
+      "no-unused-vars": "warn",
+      "react/sort-comp": "off",
+      "lines-around-comment": "off",
+      "react/prefer-stateless-function": "off"
+    }
+  },
+  "eslintIgnore": [
+    "build/*"
+  ],
+  "devDependencies": {
+    "eslint": "^4.5.0",
+    "eslint-config-synacor": "^1.1.0",
+    "if-env": "^1.0.0",
+    "node-sass": "^4.9.0",
+    "preact-cli": "^2.2.1",
+    "sass-loader": "^7.0.1"
+  },
+  "dependencies": {
+    "preact": "^8.2.9",
+    "preact-material-components": "^1.4.3",
+    "preact-router": "^2.6.0"
+  }
+}

@@ -1,0 +1,5 @@
+.home {
+  height: calc(100% - var(--toolbar-height));
+  padding: 20px;
+  overflow-y: auto;
+}

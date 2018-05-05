@@ -1,0 +1,21 @@
+{
+  "name": "http-proxies-management",
+  "short_name": "http-proxies-management",
+  "start_url": "/management/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "black",
+  "theme_color": "black",
+  "icons": [
+    {
+      "src": "management/assets/icons/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "management/assets/icons/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
