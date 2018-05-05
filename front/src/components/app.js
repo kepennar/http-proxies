@@ -1,8 +1,7 @@
 import { h, Component } from 'preact';
-import { Router } from 'preact-router';
 
 import Header from './header';
-import Home from '../routes/home';
+import Home from './home';
 
 export default class App extends Component {
   /** Gets fired when the route changes.
@@ -17,9 +16,7 @@ export default class App extends Component {
     return (
       <div id="app">
         <Header />
-        <Router onChange={this.handleRoute}>
-          <Home path="/management" />
-        </Router>
+        <Home />
       </div>
     );
   }

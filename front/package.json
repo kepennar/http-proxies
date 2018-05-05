@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "preact": "^8.2.9",
-    "preact-material-components": "^1.4.3",
-    "preact-router": "^2.6.0"
+    "preact-material-components": "^1.4.3"
   }
 }
