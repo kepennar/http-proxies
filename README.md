@@ -68,3 +68,10 @@ conf.json
     $ http-proxies -c your-proxies-conf.json
     $ http-proxies -c your-proxies-conf.json -lsm
 ```
+
+### Management UI
+
+Start with the `-m` option an go to `http(s)://localhost:_your_proxy_port/management`
+And you'll get this beautiful management UI
+
+![Management UI screen](./doc/management-screen.png?raw=true "Screen")
