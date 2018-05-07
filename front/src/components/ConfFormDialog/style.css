@@ -1,0 +1,13 @@
+.header {
+  color: var(--mdc-theme-primary);
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.field {
+  margin: 1em;
+}
+.error {
+  color: red;
+}

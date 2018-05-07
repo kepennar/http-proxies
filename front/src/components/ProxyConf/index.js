@@ -26,20 +26,24 @@ const Transforms = ({ conf }) => (
 
 export default ({ conf }) => (
   <div class={style.container}>
-    <Card className={`${style.card} ${style.input}`}>
-      <div class={style.cardHeader}>
-        <h2 class=" mdc-typography--title">Sources</h2>
-      </div>
-      <div class={style.cardBody}>
-        <List>{conf.context.map(c => <List.Item>{c}</List.Item>)}</List>
+    <Card className={style.card}>
+      <div class={style.input}>
+        <div class={style.cardHeader}>
+          <h2 class=" mdc-typography--title">Sources</h2>
+        </div>
+        <div class={style.cardBody}>
+          <List>{conf.context.map(c => <List.Item>{c}</List.Item>)}</List>
+        </div>
       </div>
     </Card>
     <Transforms conf={conf} />
-    <Card className={`${style.card} ${style.output}`}>
-      <div class={style.cardHeader}>
-        <h2 class=" mdc-typography--title">Target</h2>
+    <Card className={style.card}>
+      <div class={style.output}>
+        <div class={style.cardHeader}>
+          <h2 class=" mdc-typography--title">Target</h2>
+        </div>
+        <div class={style.cardBody}>{conf.target}</div>
       </div>
-      <div class={style.cardBody}>{conf.target}</div>
     </Card>
   </div>
 );
